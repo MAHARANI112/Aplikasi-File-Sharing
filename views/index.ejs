@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Set karakter set dokumen HTML -->
+  <meta charset="UTF-8">
+
+  <!-- Menetapkan kompatibilitas IE dan viewport untuk responsivitas -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Menetapkan judul halaman -->
+  <title>File Sharing Form</title>
+
+  <!-- Menambahkan gaya CSS langsung di dalam dokumen -->
+  <style>
+    /* Styling untuk body */
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Styling untuk container */
+    .container {
+      max-width: 500px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    /* Styling untuk pesan sukses */
+    .success-message {
+      margin-bottom: 1rem;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    /* Styling untuk formulir */
+    form {
+      display: grid;
+      gap: .5rem;
+      grid-template-columns: auto 1fr;
+    }
+
+    /* Styling untuk label */
+    label {
+      margin-bottom: 5px;
+    }
+
+    /* Styling untuk input */
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Styling untuk tombol */
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      grid-column: span 2;
+    }
+
+    /* Hover effect pada tombol */
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <!-- Container untuk menempatkan elemen-elemen formulir -->
+  <div class="container">
+    <!-- Menampilkan pesan sukses jika link file tersedia -->
+    <% if (locals.fileLink != null) { %>
+      <div class="success-message">
+        Your file is uploaded! Download link: <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
+      </div>
+    <% } %>
+
+    <!-- Formulir untuk mengunggah file -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="file">File:</label>
+      <input type="file" id="file" name="file" required />
+
+      <!-- Input untuk password (opsional) -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+
+      <!-- Tombol untuk mengirim formulir -->
+      <button type="submit">Share</button>
+    </form>
+  </div>
+</body>
+</html>
